@@ -10,33 +10,143 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/_app'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as AppCapacityRouteImport } from './routes/_app/capacity'
+import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
+import { Route as AppMarketplaceRouteImport } from './routes/_app/marketplace'
+import { Route as AppReplayRouteImport } from './routes/_app/replay'
+import { Route as AppRiskRouteImport } from './routes/_app/risk'
+import { Route as AppUlipRouteImport } from './routes/_app/ulip'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppCapacityRoute = AppCapacityRouteImport.update({
+  id: '/capacity',
+  path: '/capacity',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMarketplaceRoute = AppMarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReplayRoute = AppReplayRouteImport.update({
+  id: '/replay',
+  path: '/replay',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRiskRoute = AppRiskRouteImport.update({
+  id: '/risk',
+  path: '/risk',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppUlipRoute = AppUlipRouteImport.update({
+  id: '/ulip',
+  path: '/ulip',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/signup': typeof SignupRoute
+  '/capacity': typeof AppCapacityRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/marketplace': typeof AppMarketplaceRoute
+  '/replay': typeof AppReplayRoute
+  '/risk': typeof AppRiskRoute
+  '/ulip': typeof AppUlipRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/signup': typeof SignupRoute
+  '/capacity': typeof AppCapacityRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/marketplace': typeof AppMarketplaceRoute
+  '/replay': typeof AppReplayRoute
+  '/risk': typeof AppRiskRoute
+  '/ulip': typeof AppUlipRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_app': typeof AppRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/signup': typeof SignupRoute
+  '/_app/capacity': typeof AppCapacityRoute
+  '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/marketplace': typeof AppMarketplaceRoute
+  '/_app/replay': typeof AppReplayRoute
+  '/_app/risk': typeof AppRiskRoute
+  '/_app/ulip': typeof AppUlipRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/forgot-password'
+    | '/signup'
+    | '/capacity'
+    | '/dashboard'
+    | '/marketplace'
+    | '/replay'
+    | '/risk'
+    | '/ulip'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/forgot-password'
+    | '/signup'
+    | '/capacity'
+    | '/dashboard'
+    | '/marketplace'
+    | '/replay'
+    | '/risk'
+    | '/ulip'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/forgot-password'
+    | '/signup'
+    | '/_app/capacity'
+    | '/_app/dashboard'
+    | '/_app/marketplace'
+    | '/_app/replay'
+    | '/_app/risk'
+    | '/_app/ulip'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +158,97 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_app/capacity': {
+      id: '/_app/capacity'
+      path: '/capacity'
+      fullPath: '/capacity'
+      preLoaderRoute: typeof AppCapacityRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/dashboard': {
+      id: '/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/marketplace': {
+      id: '/_app/marketplace'
+      path: '/marketplace'
+      fullPath: '/marketplace'
+      preLoaderRoute: typeof AppMarketplaceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/replay': {
+      id: '/_app/replay'
+      path: '/replay'
+      fullPath: '/replay'
+      preLoaderRoute: typeof AppReplayRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/risk': {
+      id: '/_app/risk'
+      path: '/risk'
+      fullPath: '/risk'
+      preLoaderRoute: typeof AppRiskRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/ulip': {
+      id: '/_app/ulip'
+      path: '/ulip'
+      fullPath: '/ulip'
+      preLoaderRoute: typeof AppUlipRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppCapacityRoute: typeof AppCapacityRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppMarketplaceRoute: typeof AppMarketplaceRoute
+  AppReplayRoute: typeof AppReplayRoute
+  AppRiskRoute: typeof AppRiskRoute
+  AppUlipRoute: typeof AppUlipRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppCapacityRoute: AppCapacityRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppMarketplaceRoute: AppMarketplaceRoute,
+  AppReplayRoute: AppReplayRoute,
+  AppRiskRoute: AppRiskRoute,
+  AppUlipRoute: AppUlipRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

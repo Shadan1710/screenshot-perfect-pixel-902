@@ -1,24 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { LoginScreen } from "@/components/auth/LoginScreen";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Log in — DoP Fleet Intelligence & Capacity Exchange" },
+      {
+        name: "description",
+        content:
+          "Log in to India Post's fleet capacity platform: live utilisation, 3PL spare-capacity exchange and predictive delay risk.",
+      },
+      { property: "og:title", content: "Log in — DoP Fleet Intelligence" },
+      {
+        property: "og:description",
+        content: "Live vehicle utilisation, capacity exchange and delay risk for India Post line-haul fleet.",
+      },
+    ],
+  }),
+  component: LoginScreen,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
