@@ -17,6 +17,8 @@ import { Route as AppCapacityRouteImport } from './routes/_app/capacity'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
 import { Route as AppMarketplaceRouteImport } from './routes/_app/marketplace'
 import { Route as AppReplayRouteImport } from './routes/_app/replay'
+import { Route as AppRiskRouteImport } from './routes/_app/risk'
+import { Route as AppUlipRouteImport } from './routes/_app/ulip'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -57,6 +59,16 @@ const AppReplayRoute = AppReplayRouteImport.update({
   path: '/replay',
   getParentRoute: () => AppRoute,
 } as any)
+const AppRiskRoute = AppRiskRouteImport.update({
+  id: '/risk',
+  path: '/risk',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppUlipRoute = AppUlipRouteImport.update({
+  id: '/ulip',
+  path: '/ulip',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -66,6 +78,8 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AppDashboardRoute
   '/marketplace': typeof AppMarketplaceRoute
   '/replay': typeof AppReplayRoute
+  '/risk': typeof AppRiskRoute
+  '/ulip': typeof AppUlipRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -75,6 +89,8 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AppDashboardRoute
   '/marketplace': typeof AppMarketplaceRoute
   '/replay': typeof AppReplayRoute
+  '/risk': typeof AppRiskRoute
+  '/ulip': typeof AppUlipRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -86,6 +102,8 @@ export interface FileRoutesById {
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/marketplace': typeof AppMarketplaceRoute
   '/_app/replay': typeof AppReplayRoute
+  '/_app/risk': typeof AppRiskRoute
+  '/_app/ulip': typeof AppUlipRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -97,6 +115,8 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/marketplace'
     | '/replay'
+    | '/risk'
+    | '/ulip'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -106,6 +126,8 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/marketplace'
     | '/replay'
+    | '/risk'
+    | '/ulip'
   id:
     | '__root__'
     | '/'
@@ -116,6 +138,8 @@ export interface FileRouteTypes {
     | '/_app/dashboard'
     | '/_app/marketplace'
     | '/_app/replay'
+    | '/_app/risk'
+    | '/_app/ulip'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -183,6 +207,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppReplayRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/risk': {
+      id: '/_app/risk'
+      path: '/risk'
+      fullPath: '/risk'
+      preLoaderRoute: typeof AppRiskRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/ulip': {
+      id: '/_app/ulip'
+      path: '/ulip'
+      fullPath: '/ulip'
+      preLoaderRoute: typeof AppUlipRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -191,6 +229,8 @@ interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
   AppMarketplaceRoute: typeof AppMarketplaceRoute
   AppReplayRoute: typeof AppReplayRoute
+  AppRiskRoute: typeof AppRiskRoute
+  AppUlipRoute: typeof AppUlipRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -198,6 +238,8 @@ const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
   AppMarketplaceRoute: AppMarketplaceRoute,
   AppReplayRoute: AppReplayRoute,
+  AppRiskRoute: AppRiskRoute,
+  AppUlipRoute: AppUlipRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
