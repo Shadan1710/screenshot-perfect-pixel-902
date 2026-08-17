@@ -190,3 +190,10 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+@layer base {
+  table th:not(:last-child),
+  table td:not(:last-child) {
+    padding-right: 24px;
+  }
+}
